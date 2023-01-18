@@ -14,5 +14,5 @@ fi
 echo "Input Options: $INPUT_OPTIONS"
 echo "Input Run: $INPUT_RUN"
 echo "Input Shell: $INPUT_SHELL"
-
+echo env
 exec docker run --env-file docker-run-action.env -v "/var/run/docker.sock":"/var/run/docker.sock" $INPUT_OPTIONS --entrypoint=$INPUT_SHELL $INPUT_IMAGE -c "${INPUT_RUN//$'\n'/;}"
