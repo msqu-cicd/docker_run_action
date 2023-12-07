@@ -28,6 +28,9 @@ inputs:
     description: 'Docker Network ID'
     default: ${{ job.container.network }}
     required: false
+  debug:
+    description: Whether to tell the GitHub client to log details of its requests
+    default: ${{ (env.RUNNER_DEBUG == '1' && 'true') || 'false' }}
 runs:
   using: 'docker'
   image: 'Dockerfile'

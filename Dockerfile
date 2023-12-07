@@ -1,4 +1,4 @@
-FROM docker:20.10
+FROM docker:latest
 
 RUN apk add bash
 

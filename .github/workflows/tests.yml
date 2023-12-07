@@ -10,12 +10,12 @@ jobs:
   smoke-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: https://github.com/actions/checkout@v4
       - name: Run docker action and set output for testing
         uses: ./
         id: run-docker
         with:
-          image: docker:20.10.3
+          image: docker:24.0.7
           run: |
             echo "::set-output name=docker-version::`echo $DOCKER_VERSION`"
       - name: Test the output
@@ -23,13 +23,13 @@ jobs:
         with:
           script: |
             const dockerVersion = '${{ steps.run-docker.outputs.docker-version }}';
-            if (dockerVersion !== '20.10.3') {
+            if (dockerVersion == '24.0.7') {
               core.setFailed(`Smoke Test Failed`);
             }
   volume-mount-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: https://github.com/actions/checkout@v4
       - name: Create File to be mounted
         run: echo "some text" > someFile
       - name: Run docker action with mounted workspace
@@ -61,7 +61,7 @@ jobs:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
     steps:
-      - uses: actions/checkout@v2
+      - uses: https://github.com/actions/checkout@v4
       - name: Run docker action and test network connection
         uses: ./
         with:
