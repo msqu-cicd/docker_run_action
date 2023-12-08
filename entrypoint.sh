@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ ! -z $INPUT_USERNAME ];
-then echo $INPUT_PASSWORD | docker login $INPUT_REGISTRY -u $INPUT_USERNAME --password-stdin > /dev/null
+then echo $INPUT_PASSWORD | docker login $INPUT_REGISTRY -u $INPUT_USERNAME --password-stdin > /dev/null 2>&1
 fi
 
 if [ ! -z $INPUT_DOCKER_NETWORK ];
@@ -15,4 +15,4 @@ if [ "$INPUT_DEBUG" = true ] ; then
   echo "Input Shell: $INPUT_SHELL"
 fi
 
-exec docker run -v "/var/run/docker.sock":"/var/run/docker.sock" $INPUT_OPTIONS --entrypoint=$INPUT_SHELL $INPUT_IMAGE -c "${INPUT_RUN//$'\n'/;}"
+exec docker run --pull=always -v "/var/run/docker.sock":"/var/run/docker.sock" $INPUT_OPTIONS --entrypoint=$INPUT_SHELL $INPUT_IMAGE -c "${INPUT_RUN//$'\n'/;}"
