@@ -11,7 +11,7 @@
 ```yaml
 - name: Checkout
   uses: https://github.com/actions/checkout@v4 # Required to mount the Github Workspace to a volume
-- uses: https://gitea.msqu.de/cicd/docker_run_action.git@main
+- uses: https://git.msqu.de/cicd/docker_run_action.git@main
   with:
     username: ${{ secrets.DOCKER_USERNAME }}
     password: ${{ secrets.DOCKER_PASSWORD }}
@@ -25,7 +25,7 @@
 
 #### run a privately-owned image
 ```yaml
-- uses: https://gitea.msqu.de/cicd/docker_run_action.git@main
+- uses: https://git.msqu.de/cicd/docker_run_action.git@main
   with:
     username: ${{ secrets.DOCKER_USERNAME }}
     password: ${{ secrets.DOCKER_PASSWORD }}
@@ -40,7 +40,7 @@
   with:
     tags: test-image:latest
     push: false
-- uses: https://gitea.msqu.de/cicd/docker_run_action.git@main
+- uses: https://git.msqu.de/cicd/docker_run_action.git@main
   with:
     image: test-image:latest
     run: echo "hello world"
@@ -50,7 +50,7 @@
 #### use a specific shell (default: sh).
 *Note: The shell must be installed in the container*
 ```yaml
-- uses: https://gitea.msqu.de/cicd/docker_run_action.git@main
+- uses: https://git.msqu.de/cicd/docker_run_action.git@main
   with:
     image: docker:latest
     shell: bash
